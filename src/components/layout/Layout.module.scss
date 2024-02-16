@@ -1,0 +1,10 @@
+.layout {
+  display: flex;
+  position: relative;
+
+  &__main {
+    position: relative;
+    width: 100%;
+    overflow: auto;
+  }
+}

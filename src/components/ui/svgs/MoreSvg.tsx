@@ -1,0 +1,55 @@
+import React from "react";
+
+const MoreSvg = () => {
+  return (
+    <svg
+      width="26.000000"
+      height="26.000000"
+      viewBox="0 0 26 26"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
+      <desc>Created with Pixso.</desc>
+      <defs>
+        <clipPath id="clip2_867">
+          <rect
+            id="Больше"
+            width="26.000000"
+            height="26.000000"
+            fill="white"
+            fill-opacity="0"
+          />
+        </clipPath>
+      </defs>
+      <g clip-path="url(#clip2_867)">
+        <circle
+          id="circle"
+          cx="6.500000"
+          cy="13.000000"
+          r="1.625000"
+          fill="#FFFFFF"
+          fill-opacity="1.000000"
+        />
+        <circle
+          id="circle"
+          cx="13.000000"
+          cy="13.000000"
+          r="1.625000"
+          fill="#FFFFFF"
+          fill-opacity="1.000000"
+        />
+        <circle
+          id="circle"
+          cx="19.500000"
+          cy="13.000000"
+          r="1.625000"
+          fill="#FFFFFF"
+          fill-opacity="1.000000"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export default MoreSvg;

@@ -1,0 +1,85 @@
+import React from "react";
+
+const LockSvg = () => {
+  return (
+    <svg
+      width="24.000000"
+      height="24.000000"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
+      <desc>Created with Pixso.</desc>
+      <defs>
+        <clipPath id="clip18_6">
+          <rect
+            id="Запирание"
+            width="24.000000"
+            height="24.000000"
+            fill="white"
+            fill-opacity="0"
+          />
+        </clipPath>
+      </defs>
+      <g clip-path="url(#clip18_6)">
+        <rect
+          id="rect"
+          x="3.000000"
+          y="11.000000"
+          rx="2.000000"
+          width="18.000000"
+          height="11.000000"
+          fill="#000000"
+          fill-opacity="0"
+        />
+        <rect
+          id="rect"
+          x="3.000000"
+          y="11.000000"
+          rx="2.000000"
+          width="18.000000"
+          height="11.000000"
+          stroke="#8264FE"
+          stroke-opacity="1.000000"
+          stroke-width="1.500000"
+          stroke-linejoin="round"
+        />
+        <path
+          id="path"
+          d="M7.72998 10.98L7.75 11C7.75 11.42 7.41992 11.75 7 11.75C6.58008 11.75 6.25 11.42 6.25 11L6.27002 10.98L7.72998 10.98ZM17.73 10.98L17.75 11C17.75 11.42 17.4199 11.75 17 11.75C16.5801 11.75 16.25 11.42 16.25 11L16.27 10.98L17.73 10.98Z"
+          fill="#000000"
+          fill-opacity="0"
+          fill-rule="nonzero"
+        />
+        <path
+          id="path"
+          d="M7 11L7 7C7 4.23859 9.23853 2 12 2C14.7615 2 17 4.23859 17 7L17 11"
+          stroke="#8264FE"
+          stroke-opacity="1.000000"
+          stroke-width="1.500000"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+        />
+        <path
+          id="path"
+          d="M11.27 15.02L11.25 15C11.25 14.58 11.5801 14.25 12 14.25C12.4199 14.25 12.75 14.58 12.75 15L12.73 15.02L11.27 15.02ZM12.73 17.98L12.75 18C12.75 18.42 12.4199 18.75 12 18.75C11.5801 18.75 11.25 18.42 11.25 18L11.27 17.98L12.73 17.98Z"
+          fill="#000000"
+          fill-opacity="0"
+          fill-rule="nonzero"
+        />
+        <path
+          id="path"
+          d="M12 15L12 18"
+          stroke="#8264FE"
+          stroke-opacity="1.000000"
+          stroke-width="1.500000"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export default LockSvg;

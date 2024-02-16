@@ -1,0 +1,121 @@
+.task {
+  margin-top: 70px;
+  margin-left: 40px;
+  &__content {
+    &__title {
+      color: rgb(236, 240, 241);
+      font-family: Montserrat;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 39px;
+      letter-spacing: 0px;
+    }
+
+    &__items {
+      display: flex;
+      &__tasks {
+        margin-right: 20px;
+        margin-top: 20px;
+        padding: 24px;
+        max-width: 365px;
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        box-sizing: border-box;
+        border-radius: 30px;
+        background: rgb(44, 44, 44);
+        flex-shrink: 0;
+        flex-basis: 365px;
+        &__header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          &__title {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            font-family: Montserrat;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 27px;
+            letter-spacing: 0px;
+          }
+          &__more {
+            background: none;
+            border: none;
+            display: flex;
+            cursor: pointer;
+          }
+        }
+        &__body {
+          &__item {
+            display: flex;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 12px;
+            background: rgb(55, 55, 55);
+            align-items: flex-start;
+            &__completed {
+              margin-top: 4px;
+              margin-right: 10px;
+              width: 20px;
+              height: 20px;
+              border-radius: 50px;
+              background: none;
+              border: 1px solid rgb(255, 255, 255);
+              cursor: pointer;
+            }
+            &__info {
+              max-width: 300px;
+              width: 100%;
+              &__name {
+                color: rgb(255, 255, 255);
+                font-family: Montserrat;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 27px;
+                letter-spacing: 0px;
+                text-align: left;
+              }
+              &__description {
+                margin-top: 5px;
+                word-wrap: break-word;
+                color: rgb(236, 240, 241);
+                font-family: Montserrat;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0px;
+              }
+              &__footer {
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                &__left {
+                  display: flex;
+                  align-items: center;
+                  p {
+                    margin-left: 5px;
+                    color: rgb(236, 240, 241);
+                    font-family: Montserrat;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 20px;
+                    letter-spacing: 0px;
+                  }
+                }
+                &__right {
+                  border-radius: 50px;
+                  background: rgb(255, 87, 90);
+                  width: 44.43px;
+                  height: 6px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
