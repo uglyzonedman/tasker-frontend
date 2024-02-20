@@ -10,7 +10,11 @@ const LayoutPage = ({ children }) => {
   console.log("Auth", pathname);
   return (
     <div className={styles.layout}>
-      {pathname.includes("/sign_in") ? "" : <Sidebar />}
+      {pathname.includes("/sign_in") || pathname.includes("/sign_up") ? (
+        ""
+      ) : (
+        <Sidebar />
+      )}
 
       <div className={styles.layout__main}>
         <main>{children}</main>

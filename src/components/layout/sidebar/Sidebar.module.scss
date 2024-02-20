@@ -1,14 +1,18 @@
 .aside {
   display: flex;
-  height: 100vh;
   min-width: 288px;
   flex-direction: column;
   background-color: #111111;
   transition-duration: 300ms;
   transition-timing-function: linear;
   color: #ffffff;
+  position: relative;
+
   &__content {
     padding: 30px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 
     &__title {
       margin-top: 37px;
@@ -20,12 +24,14 @@
       letter-spacing: 0px;
       text-align: center;
     }
+
     &__nav {
       &__title {
         margin-top: 26px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         h3 {
           color: rgb(236, 240, 241);
           font-family: Montserrat;
@@ -34,6 +40,7 @@
           line-height: 29px;
           letter-spacing: 0px;
         }
+
         button {
           background: none;
           border: none;
@@ -43,16 +50,20 @@
           cursor: pointer;
         }
       }
+
       &__list {
         display: block;
         margin: 0;
+
         &__item {
           margin-top: 20px;
           list-style: none;
+
           &__link {
             display: flex;
             align-items: center;
             text-decoration: none;
+
             &__text {
               color: rgb(255, 255, 255);
               font-family: Montserrat;
@@ -62,6 +73,44 @@
               letter-spacing: 0px;
               margin-left: 16px;
             }
+          }
+        }
+      }
+    }
+
+    &__footer {
+      margin-top: auto; /* Push the footer to the bottom */
+      &__user {
+        &__info {
+          display: flex;
+          align-items: center;
+          &__login {
+            margin-left: 10px;
+            color: rgb(255, 255, 255);
+            font-family: Montserrat;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0px;
+            text-align: left;
+          }
+        }
+        &__logout {
+          display: flex;
+          align-items: center;
+          background: none;
+          border: none;
+          margin-top: 20px;
+          cursor: pointer;
+
+          &__span {
+            color: rgb(255, 255, 255);
+            font-family: Montserrat;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 22px;
+            letter-spacing: 0px;
+            margin-left: 16px;
           }
         }
       }

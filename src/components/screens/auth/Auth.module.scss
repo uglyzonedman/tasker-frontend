@@ -46,6 +46,17 @@
         color: #ffffff;
         padding: 8px 20px;
       }
+      &__link {
+        color: rgb(255, 255, 255);
+        font-family: Montserrat;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0px;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+      }
     }
   }
 }

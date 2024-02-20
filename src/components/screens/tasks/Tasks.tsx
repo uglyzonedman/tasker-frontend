@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import styles from "./Tasks.module.scss";
 import Avatar from "../../ui/avatar/Avatar";
 import overplus from "../../../assets/overplus.jpg";
@@ -6,110 +7,89 @@ import MoreSvg from "../../ui/svgs/MoreSvg";
 import PlusSvg from "../../ui/svgs/PlusSvg";
 import PathSvg from "../../ui/svgs/PathSvg";
 import Link from "next/link";
-
+import Overlay from "../../ui/overlay/Overlay";
+import CreateProject from "../../ui/modal/create-project/CreateProject";
+import TasksItem from "./tasks-item/TasksItem";
+import useSWR from "swr";
+import { ProjectService } from "../../services/project.service";
+import SearchSvg from "../../ui/svgs/SearchSvg";
+import Line from "../../ui/line/Line";
 const Tasks = () => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const { data: projectByUser, isLoading: isLoadingProjectByUser } = useSWR(
+    "project/by-user-id",
+    () => ProjectService.getProjectByUserId()
+  );
+
+  const [searchValue, sestSearchValue] = useState("");
+
+  const filteredProjects = isLoadingProjectByUser
+    ? []
+    : projectByUser?.projects.filter((project) =>
+        project.name.toUpperCase().includes(searchValue.toUpperCase())
+      );
+
   return (
     <div className={styles.tasks}>
+      {isOpenModal && <Overlay />}
+      {isOpenModal && (
+        <CreateProject
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
+        />
+      )}
       <div className={styles.tasks__content}>
         <div className={styles.tasks__content__header}>
           <h3 className={styles.tasks__content__header__title}>Мои проекты</h3>
+          <button onClick={() => setIsOpenModal(true)}>
+            <PlusSvg />
+          </button>
+        </div>
+        <div className={styles.tasks__content__search}>
+          <SearchSvg />
+          <input
+            onChange={(e) => sestSearchValue(e.target.value)}
+            placeholder="Поиск проектов"
+            type="text"
+          />
         </div>
         <div className={styles.tasks__content__items}>
-          <div className={styles.tasks__content__items__item}>
-            <div className={styles.tasks__content__items__item__header}>
-              <Link
-                href={"/tasks/1"}
-                className={styles.tasks__content__items__item__header__title}
-              >
-                Kazfl
-              </Link>
-              <div
-                className={styles.tasks__content__items__item__header__buttons}
-              >
-                <button
-                  className={
-                    styles.tasks__content__items__item__header__buttons__plus
-                  }
-                >
-                  <PlusSvg />
-                </button>
-                <button
-                  className={
-                    styles.tasks__content__items__item__header__buttons__more
-                  }
-                >
-                  <MoreSvg />
-                </button>
-              </div>
-            </div>
-            <div className={styles.tasks__content__items__item__block}>
-              <div
-                className={styles.tasks__content__items__item__block__header}
-              >
-                <h3
-                  className={
-                    styles.tasks__content__items__item__block__header__title
-                  }
-                >
-                  Создать визуальные кнопки под логин и пароль
-                </h3>
-              </div>
-              <p
-                className={
-                  styles.tasks__content__items__item__block__description
-                }
-              >
-                ТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТестТест
-              </p>
-              <div
-                className={styles.tasks__content__items__item__block__footer}
-              >
-                <button
-                  className={
-                    styles.tasks__content__items__item__block__footer__share
-                  }
-                  type="button"
-                >
-                  <PathSvg />
-                </button>
-                <div
-                  className={
-                    styles.tasks__content__items__item__block__footer__users
-                  }
-                >
-                  <Avatar
-                    border={50}
-                    fz={14}
-                    height={28}
-                    width={28}
-                    login="Majest"
-                    avatar={overplus}
-                  />
-                  <Avatar
-                    border={50}
-                    fz={14}
-                    height={28}
-                    width={28}
-                    login="Majest"
-                    avatar={overplus}
-                  />
-                  <div
-                    className={
-                      styles.tasks__content__items__item__block__footer__users__count
-                    }
-                  >
-                    <span>+2</span>
-                  </div>
-                </div>
-                <div
-                  className={
-                    styles.tasks__content__items__item__block__footer__status
-                  }
-                ></div>
-              </div>
-            </div>
-          </div>
+          <h3 className={styles.tasks__content__items__title}>
+            Проектов -{" "}
+            {isLoadingProjectByUser ? 0 : projectByUser?.projects.length}
+          </h3>
+          <Line top="2px" bottom="10px" bg="#3d3d3d" />
+          {isLoadingProjectByUser
+            ? []
+            : filteredProjects?.map((project) => (
+                <TasksItem
+                  id={project.id}
+                  name={project.name}
+                  color={project.color}
+                  isFavorited={project.isFavorited}
+                  ownerId={project.ownerId}
+                  ProjectCollaboratorion={project.ProjectCollaboratorion}
+                  ProjectItem={project.ProjectItem}
+                />
+              ))}
         </div>
+        {/* <div className={styles.tasks__content__items}>
+
+          {isLoadingProjectByUser
+            ? []
+            : projectByUser?.projects.map((project) => (
+                <TasksItem
+                  id={project.id}
+                  name={project.name}
+                  color={project.color}
+                  isFavorited={project.isFavorited}
+                  ownerId={project.ownerId}
+                  ProjectCollaboratorion={project.ProjectCollaboratorion}
+                  ProjectItem={project.ProjectItem}
+                />
+              ))}
+        </div> */}
       </div>
     </div>
   );

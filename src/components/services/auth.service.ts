@@ -10,4 +10,12 @@ export const AuthService = {
 
     return res.data;
   },
+  async login(email: string, password: string) {
+    const res = await $apiWithoutToken.post("auth/login", {
+      email: email,
+      password: password,
+    });
+
+    return res.data;
+  },
 };

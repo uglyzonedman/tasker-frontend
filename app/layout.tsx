@@ -1,11 +1,8 @@
 "use client";
-import type { Metadata } from "next";
 import "./globals.css";
-import Head from "next/head";
 import LayoutPage from "@/src/components/layout/Layout";
-import { Provider } from "react-redux";
-import { store } from "@/src/store/store";
-
+import AuthProvider from "@/src/components/providers/AuthProvider";
+import { SWRConfig } from "swr";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -14,9 +11,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Provider store={store}>
-          <LayoutPage children={children} />
-        </Provider>
+        <SWRConfig>
+          <AuthProvider>
+            <LayoutPage children={children} />
+          </AuthProvider>
+        </SWRConfig>
       </body>
     </html>
   );

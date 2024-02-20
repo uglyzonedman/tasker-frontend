@@ -6,18 +6,20 @@ import LockSvg from "../../ui/svgs/LockSvg";
 import UserSvg from "../../ui/svgs/UserSvg";
 import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
-import { useAppDispatch, useAppSelector } from "@/src/hooks/hooks";
-import { register } from "@/src/actions/auth.action";
+import { authZustand } from "@/src/store/auth.zustand";
+import { IAuthState } from "@/src/interfaces/auth.interface";
+import Link from "next/link";
 
 const Auth = () => {
+  const router = useRouter();
   const pathname = usePathname();
   const [data, setData] = useState({
     email: "",
     login: "",
     password: "",
   });
-  const { value } = useAppSelector((state) => state.counter);
-  const dispatch = useAppDispatch();
+
+  const { login, register } = authZustand((state: IAuthState) => state);
   return (
     <div className={styles.auth}>
       <form
@@ -25,14 +27,9 @@ const Auth = () => {
         onSubmit={(e) => {
           e.preventDefault();
           if (pathname.includes("/sign_in")) {
+            login(data.email, data.password);
           } else if (pathname.includes("/sign_up")) {
-            dispatch(
-              register({
-                email: data.email,
-                login: data.login,
-                password: data.password,
-              })
-            );
+            register(data.email, data.password, data.login);
           }
         }}
       >
@@ -102,6 +99,23 @@ const Auth = () => {
           <button className={styles.auth__content__block__submit} type="submit">
             Регистрация
           </button>
+        )}
+
+        {pathname.includes("/sign_in") && (
+          <Link
+            href={"/auth/sign_up"}
+            className={styles.auth__content__block__link}
+          >
+            Зарегистрироваться
+          </Link>
+        )}
+        {pathname.includes("/sign_up") && (
+          <Link
+            href={"/auth/sign_in"}
+            className={styles.auth__content__block__link}
+          >
+            Войти
+          </Link>
         )}
       </form>
     </div>

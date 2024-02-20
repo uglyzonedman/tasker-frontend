@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 *,
 *::before,
 *::after {
@@ -28,37 +28,37 @@ dl,
 dd {
   margin: 0;
 }
-
+body,
+html {
+  margin: 0;
+  height: 100%;
+}
 /* Выставляем основные настройки по-умолчанию для body */
 body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  background: #1A1A1A;
-  font-family: 'Montserrat', sans-serif;
-  margin: 0;
+  background: #1a1a1a;
+  font-family: "Montserrat", sans-serif;
 }
 
-/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
 ul[class],
 ol[class] {
   list-style: none;
 }
 
-/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
+#__next {
+  height: 100%;
+}
 
-
-
-/* Указываем понятную периодичность в потоке данных у article*/
 article > * + * {
   margin-top: 1em;
 }
 
-/* Наследуем шрифты для инпутов и кнопок */
 input,
 button,
 textarea,
@@ -66,7 +66,6 @@ select {
   font: inherit;
 }
 
-/* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
