@@ -2,7 +2,12 @@
 import "./globals.css";
 import LayoutPage from "@/src/components/layout/Layout";
 import AuthProvider from "@/src/components/providers/AuthProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SWRConfig } from "swr";
+
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+});
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -11,11 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SWRConfig>
+        <QueryClientProvider client={queryClient}>
           <AuthProvider>
             <LayoutPage children={children} />
           </AuthProvider>
-        </SWRConfig>
+        </QueryClientProvider>
       </body>
     </html>
   );

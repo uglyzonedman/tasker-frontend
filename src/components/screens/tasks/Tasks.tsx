@@ -14,13 +14,19 @@ import useSWR from "swr";
 import { ProjectService } from "../../services/project.service";
 import SearchSvg from "../../ui/svgs/SearchSvg";
 import Line from "../../ui/line/Line";
+import { useQuery } from "@tanstack/react-query";
 const Tasks = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const { data: projectByUser, isLoading: isLoadingProjectByUser } = useSWR(
-    "project/by-user-id",
-    () => ProjectService.getProjectByUserId()
-  );
+  const {
+    data: projectByUser,
+    isLoading: isLoadingProjectByUser,
+    isRefetching: isRefetchingProjectByUser,
+    refetch,
+  } = useQuery({
+    queryKey: ["project/by-user-id"],
+    queryFn: () => ProjectService.getProjectByUserId(),
+  });
 
   const [searchValue, sestSearchValue] = useState("");
 
@@ -37,6 +43,7 @@ const Tasks = () => {
         <CreateProject
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
+          refetch={refetch}
         />
       )}
       <div className={styles.tasks__content}>
@@ -74,22 +81,6 @@ const Tasks = () => {
                 />
               ))}
         </div>
-        {/* <div className={styles.tasks__content__items}>
-
-          {isLoadingProjectByUser
-            ? []
-            : projectByUser?.projects.map((project) => (
-                <TasksItem
-                  id={project.id}
-                  name={project.name}
-                  color={project.color}
-                  isFavorited={project.isFavorited}
-                  ownerId={project.ownerId}
-                  ProjectCollaboratorion={project.ProjectCollaboratorion}
-                  ProjectItem={project.ProjectItem}
-                />
-              ))}
-        </div> */}
       </div>
     </div>
   );

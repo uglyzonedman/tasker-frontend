@@ -1,11 +1,10 @@
 .task {
   margin-top: 70px;
   margin-left: 40px;
-  height: 100vh;
   &__content {
-    height: 100%;
     display: flex;
     flex-direction: column;
+
     &__title {
       color: rgb(236, 240, 241);
       font-family: Montserrat;
@@ -17,7 +16,7 @@
 
     &__items {
       display: flex;
-      height: 100%;
+
       &__input {
         margin-top: 10px;
         input {
@@ -43,6 +42,14 @@
             border-radius: 12px;
             padding: 5px 10px;
             margin-right: 10px;
+            svg {
+              padding: 0;
+              margin: 0;
+            }
+            button {
+              margin: 0;
+              padding: 0;
+            }
           }
           &__close {
             background: transparent;
@@ -71,20 +78,14 @@
         }
       }
       &__tasks {
-        margin-right: 20px;
         margin-top: 20px;
         padding: 24px;
+        margin-right: 30px;
         width: 365px;
         display: flex;
-        flex-wrap: nowrap;
         flex-direction: column;
-        box-sizing: border-box;
         border-radius: 30px;
         background: rgb(44, 44, 44);
-        flex-shrink: 1;
-        flex-grow: 0;
-        overflow-y: auto;
-        height: 80%;
 
         &__header {
           display: flex;
@@ -115,8 +116,8 @@
             }
             display: flex;
             align-items: center;
-            margin: 10px auto;
-
+            margin-top: 10px;
+            margin-left: 15px;
             border: none;
             background: none;
             cursor: pointer;
@@ -181,7 +182,6 @@
                 }
                 &__right {
                   border-radius: 50px;
-                  background: rgb(255, 87, 90);
                   width: 44.43px;
                   height: 6px;
                 }

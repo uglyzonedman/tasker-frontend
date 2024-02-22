@@ -23,12 +23,18 @@ export const ProjectService = {
     );
     return res.data;
   },
-  async createTask(projectItemId: string, name: string, description: string) {
+  async createTask(
+    projectItemId: string,
+    name: string,
+    description: string,
+    priority: string
+  ) {
     const res = await $apiWithToken.post(
       `project/create-task/${projectItemId}`,
       {
         name,
         description,
+        priority,
       }
     );
     return res.data;
@@ -40,6 +46,15 @@ export const ProjectService = {
         name,
       }
     );
+    return res.data;
+  },
+
+  async favorite() {
+    const res = await $apiWithToken.get<IProjectResponse>("project/favorite");
+    return res.data;
+  },
+  async changeTaskCompleted(taskId: string) {
+    const res = await $apiWithToken.put(`project/change/${taskId}`);
     return res.data;
   },
 };

@@ -7,21 +7,31 @@ import useSWR from "swr";
 import { ProjectService } from "@/src/components/services/project.service";
 import PlusSvg from "@/src/components/ui/svgs/PlusSvg";
 import useSWRMutation from "swr/mutation";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 const Task = () => {
   const pathname = usePathname();
   const [name, setName] = useState("");
   const updatePathname = pathname.split("/");
-  const { data: projectItem, isLoading: isLoadingProjectItem } = useSWR(
-    "project/by-id",
-    () => ProjectService.getProjectItemByIdProject(updatePathname[2])
-  );
-
-  const { trigger } = useSWRMutation("create-project", () =>
-    ProjectService.createProjectItem(updatePathname[2], name)
-  );
-
   const [isOpenCreateProject, setIsOpenCreateProject] = useState(false);
+
+  const {
+    data: projectItem,
+    isLoading: isLoadingProjectItem,
+    refetch,
+  } = useQuery({
+    queryKey: ["project/by-id"],
+    queryFn: () => ProjectService.getProjectItemByIdProject(updatePathname[2]),
+  });
+
+  const { mutate } = useMutation({
+    mutationKey: ["create-project"],
+    mutationFn: () => ProjectService.createProjectItem(updatePathname[2], name),
+    onSuccess: () => {
+      refetch();
+      setIsOpenCreateProject(false);
+    },
+  });
 
   return (
     <div className={styles.task}>
@@ -33,7 +43,7 @@ const Task = () => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              trigger();
+              mutate();
             }}
             className={styles.task__content__items__input}
           >
@@ -79,6 +89,7 @@ const Task = () => {
                   name={item.name}
                   updatedAt={item.updatedAt}
                   Task={item.Task}
+                  refetch={refetch}
                 />
               ))}
         </div>

@@ -1,0 +1,18 @@
+<svg width="24.000000" height="24.000000" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip42_1">
+			<rect id="Флаг" width="24.000000" height="24.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip42_1)">
+		<path id="path" d="M4.02002 22.73L4 22.75C3.57996 22.75 3.25 22.42 3.25 22C3.25 21.58 3.57996 21.25 4 21.25L4.02002 21.27L4.02002 22.73ZM7.97998 21.27L8 21.25C8.42004 21.25 8.75 21.58 8.75 22C8.75 22.42 8.42004 22.75 8 22.75L7.97998 22.73L7.97998 21.27Z" fill="#000000" fill-opacity="0" fill-rule="nonzero"/>
+		<path id="path" d="M4 22L6 22L8 22" stroke="#808080" stroke-opacity="1.000000" stroke-width="1.500000" stroke-linejoin="round" stroke-linecap="round"/>
+		<path id="path" d="M5.27002 2.02002L5.25 2C5.25 1.58002 5.57996 1.25 6 1.25C6.42004 1.25 6.75 1.58002 6.75 2L6.72998 2.02002L5.27002 2.02002ZM6.72998 21.98L6.75 22C6.75 22.42 6.42004 22.75 6 22.75C5.57996 22.75 5.25 22.42 5.25 22L5.27002 21.98L6.72998 21.98Z" fill="#000000" fill-opacity="0" fill-rule="nonzero"/>
+		<path id="path" d="M6 2L6 22" stroke="#808080" stroke-opacity="1.000000" stroke-width="1.500000" stroke-linejoin="round" stroke-linecap="round"/>
+		<path id="path" d="M20 3L6 3L6 11L20 11L18 7L20 3Z" fill="#000000" fill-opacity="0" fill-rule="nonzero"/>
+		<path id="path" d="M6 3L6 11L20 11L18 7L20 3L6 3Z" stroke="#808080" stroke-opacity="1.000000" stroke-width="1.500000" stroke-linejoin="round"/>
+	</g>
+</svg>

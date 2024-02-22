@@ -1,0 +1,33 @@
+.modal {
+  position: absolute;
+  background: #262626;
+  color: #ffffff;
+  top: -30px;
+  border-radius: 12px;
+  border: 1px solid #626262;
+  &__content {
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    button {
+      padding: 5px;
+      background: transparent;
+      border: none;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        background: #626262;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+      p {
+        margin-left: 10px;
+        color: #ffffff;
+        font-size: 16px;
+      }
+    }
+  }
+}

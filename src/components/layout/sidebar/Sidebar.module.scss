@@ -13,7 +13,42 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-
+    &__favorite {
+      margin-top: 40px;
+      &__title {
+        color: rgb(236, 240, 241);
+        font-family: Montserrat;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 29px;
+        letter-spacing: 0px;
+      }
+      &__body {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        &__item {
+          text-decoration: none;
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          div {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+          }
+          p {
+            color: rgb(255, 255, 255);
+            font-family: Montserrat;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0px;
+            margin-left: 16px;
+          }
+        }
+      }
+    }
     &__title {
       margin-top: 37px;
       color: rgb(130, 100, 254);

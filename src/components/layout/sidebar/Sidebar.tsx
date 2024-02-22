@@ -12,6 +12,8 @@ import SidebarFooter from "./sidebar-footer/SidebarFooter";
 import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { UserService } from "../../services/user.service";
+import { ProjectService } from "../../services/project.service";
+import { useQuery } from "@tanstack/react-query";
 
 const Sidebar = () => {
   const SidebarFooter = dynamic(
@@ -21,12 +23,16 @@ const Sidebar = () => {
     }
   );
 
-  const { data: profile, isLoading: isLoadingProfile } = useSWR(
-    "get-profile",
-    () => UserService.getProfile()
-  );
+  const { data: profile, isLoading: isLoadingProfile } = useQuery({
+    queryKey: ["get-profile"],
+    queryFn: () => UserService.getProfile(),
+  });
 
-  console.log("profile", profile);
+  const { data: favorite, isLoading: isLoadingFavorite } = useQuery({
+    queryKey: ["get-favorite"],
+    queryFn: () => ProjectService.favorite(),
+  });
+
   return (
     <aside className={styles.aside}>
       <div className={styles.aside__content}>
@@ -54,6 +60,22 @@ const Sidebar = () => {
             </li>
           </ul>
         </nav>
+        <div className={styles.aside__content__favorite}>
+          <h3 className={styles.aside__content__favorite__title}>Избранное</h3>
+          <div className={styles.aside__content__favorite__body}>
+            {isLoadingFavorite
+              ? []
+              : favorite?.projects.map((project) => (
+                  <Link
+                    className={styles.aside__content__favorite__body__item}
+                    href={`/tasks/${project.id}`}
+                  >
+                    <div style={{ background: project.color }}></div>
+                    <p>{project.name}</p>
+                  </Link>
+                ))}
+          </div>
+        </div>
         <SidebarFooter profile={profile} isLoadingProfile={isLoadingProfile} />
       </div>
     </aside>

@@ -6,28 +6,44 @@ import { Sketch } from "@uiw/react-color";
 import useSWRMutation from "swr/mutation";
 import { ProjectService } from "@/src/components/services/project.service";
 import CloseSvg from "../../svgs/CloseSvg";
+import {
+  QueryObserverResult,
+  RefetchOptions,
+  useMutation,
+} from "@tanstack/react-query";
+import { IProjectResponse } from "@/src/interfaces/project.interface";
 
 interface ICreateProject {
   isOpenModal: boolean;
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  refetch: (
+    options?: RefetchOptions | undefined
+  ) => Promise<QueryObserverResult<IProjectResponse, Error>>;
 }
-const CreateProject = ({ isOpenModal, setIsOpenModal }: ICreateProject) => {
+const CreateProject = ({
+  isOpenModal,
+  setIsOpenModal,
+  refetch,
+}: ICreateProject) => {
   const [hex, setHex] = useState("#ffffff");
   const [isOpenColor, setIsOpenColor] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
   const [name, setName] = useState("");
 
-  const { trigger } = useSWRMutation("project/create", () =>
-    ProjectService.createProject(name, hex, isFavorited)
-  );
+  const { mutate } = useMutation({
+    mutationKey: ["project/create"],
+    mutationFn: () => ProjectService.createProject(name, hex, isFavorited),
+    onSuccess: () => {
+      setIsOpenModal(false);
+      refetch();
+    },
+  });
   return ReactDom.createPortal(
     <form
       className={styles.modal}
       onSubmit={(e) => {
         e.preventDefault();
-        trigger().then(() => {
-          setIsOpenModal(false);
-        });
+        mutate();
       }}
     >
       <div className={styles.modal__header}>
