@@ -13,7 +13,7 @@ import {
 } from "@tanstack/react-query";
 import "react-datepicker/dist/react-datepicker.css";
 import { IProjectResponse } from "@/src/interfaces/project.interface";
-import CalendarSvg from "../../../svgs/CalendarSvg";
+import "react-datepicker/dist/react-datepicker.css";
 interface ICreateTask {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   id: string;
@@ -122,7 +122,8 @@ const CreateTask = ({ setIsOpen, id, refetch }: ICreateTask) => {
           </p>
           <div className={styles.modal__options__priority__body}>
             <DatePicker
-              className={styles.test}
+              dayClassName={() => styles.test2}
+              calendarClassName={styles.test}
               selected={endDate}
               onChange={(date: any) => setEndDate(date)}
             />
