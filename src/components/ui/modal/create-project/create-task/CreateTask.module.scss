@@ -7,16 +7,50 @@
   position: relative;
   &__options {
     display: flex;
+    flex-direction: column;
     margin-top: 10px;
     &__priority {
-      background: transparent;
-      border-radius: 12px;
-      border: 1px solid #626262;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      padding: 5px;
+      &__title {
+        color: rgb(236, 240, 241);
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 39px;
+        letter-spacing: 0px;
+      }
+      &__body {
+        display: flex;
+        align-items: center;
+        &__button {
+          background: transparent;
+          border-radius: 12px;
+          border: 1px solid #626262;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          padding: 5px;
+        }
+        &__name {
+          margin-left: 10px;
+          color: rgb(236, 240, 241);
+          font-family: Montserrat;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 39px;
+          letter-spacing: 0px;
+        }
+      }
+    }
+    &__datepicker {
+      &__title {
+        color: rgb(236, 240, 241);
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 39px;
+        letter-spacing: 0px;
+      }
     }
     &__calendar {
       background: transparent;
@@ -81,4 +115,14 @@
       cursor: pointer;
     }
   }
+}
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__input-container input {
+  display: block;
+  width: 100%;
+}
+
+.react-datepicker__day-names {
+  background: #8264fe;
 }

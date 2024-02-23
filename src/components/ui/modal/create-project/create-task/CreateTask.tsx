@@ -1,18 +1,17 @@
 import React, { ChangeEvent, useState } from "react";
 import styles from "./CreateTask.module.scss";
-import useSWRMutation from "swr/mutation";
 import { ProjectService } from "@/src/components/services/project.service";
 import { usePathname } from "next/navigation";
 import FlagSvg from "../../../svgs/FlagSvg";
 import ModalPriorite from "../../modal-priorite/ModalPriorite";
 import { priorities } from "@/src/components/consts/priorities";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import DatePicker from "react-datepicker";
 import {
   QueryObserverResult,
   RefetchOptions,
   useMutation,
 } from "@tanstack/react-query";
+import "react-datepicker/dist/react-datepicker.css";
 import { IProjectResponse } from "@/src/interfaces/project.interface";
 import CalendarSvg from "../../../svgs/CalendarSvg";
 interface ICreateTask {
@@ -29,7 +28,7 @@ const CreateTask = ({ setIsOpen, id, refetch }: ICreateTask) => {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [priority, setPriority] = useState("");
-
+  const [endDate, setEndDate] = useState();
   const [value, onChange] = useState(new Date());
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const handleCalendarChange = (date: Date) => {
@@ -100,14 +99,35 @@ const CreateTask = ({ setIsOpen, id, refetch }: ICreateTask) => {
             setIsOpenPriorite={setIsOpenPriorite}
           />
         )}
-        <button
-          type="button"
-          onClick={() => setIsOpenPriorite((prev) => !prev)}
-          className={styles.modal__options__priority}
-        >
-          <FlagSvg bg={checkPriorite(priority)} />
-        </button>
-        <button
+        <div className={styles.modal__options__priority}>
+          <p className={styles.modal__options__priority__title}>
+            Укажите приоритет
+          </p>
+          <div className={styles.modal__options__priority__body}>
+            <button
+              className={styles.modal__options__priority__body__button}
+              type="button"
+              onClick={() => setIsOpenPriorite((prev) => !prev)}
+            >
+              <FlagSvg bg={checkPriorite(priority)} />
+            </button>
+            <p className={styles.modal__options__priority__body__name}>
+              {priority}
+            </p>
+          </div>
+        </div>
+        <div className={styles.modal__options__datepicker}>
+          <p className={styles.modal__options__datepicker__title}>
+            Укажите приоритет
+          </p>
+          <div className={styles.modal__options__priority__body}>
+            <DatePicker
+              selected={endDate}
+              onChange={(date: any) => setEndDate(date)}
+            />
+          </div>
+        </div>
+        {/* <button
           type="button"
           onClick={() => {
             setIsOpenCalendar((prev) => !prev);
@@ -115,24 +135,7 @@ const CreateTask = ({ setIsOpen, id, refetch }: ICreateTask) => {
           className={styles.modal__options__calendar}
         >
           <CalendarSvg />
-        </button>
-        {isOpenCalendar && (
-          <div
-            style={{
-              position: "absolute",
-              top: "-30px",
-              right: "0",
-            }}
-          >
-            <Calendar
-              maxDate={new Date()}
-              //@ts-ignore
-              onChange={handleCalendarChange}
-              value={value}
-              className={styles.modal__options__calendar__item}
-            />
-          </div>
-        )}
+        </button> */}
       </div>
       <div className={styles.modal__buttons}>
         <button type="submit" className={styles.modal__buttons__add}>
