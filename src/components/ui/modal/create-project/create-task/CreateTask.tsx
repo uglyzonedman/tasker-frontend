@@ -122,20 +122,12 @@ const CreateTask = ({ setIsOpen, id, refetch }: ICreateTask) => {
           </p>
           <div className={styles.modal__options__priority__body}>
             <DatePicker
+              className={styles.test}
               selected={endDate}
               onChange={(date: any) => setEndDate(date)}
             />
           </div>
         </div>
-        {/* <button
-          type="button"
-          onClick={() => {
-            setIsOpenCalendar((prev) => !prev);
-          }}
-          className={styles.modal__options__calendar}
-        >
-          <CalendarSvg />
-        </button> */}
       </div>
       <div className={styles.modal__buttons}>
         <button type="submit" className={styles.modal__buttons__add}>
