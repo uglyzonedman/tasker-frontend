@@ -21,7 +21,6 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
       localStorage.removeItem("user");
     }
 
-    // Redirect to "/auth/sign_in" if the user is not authenticated
     if (!user && !pathname.startsWith("/auth/")) {
       router.push("/auth/sign_in");
     }

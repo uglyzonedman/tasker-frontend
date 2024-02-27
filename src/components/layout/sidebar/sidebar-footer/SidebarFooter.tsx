@@ -1,10 +1,14 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import styles from "../Sidebar.module.scss";
 import { useAuth } from "@/src/hooks/hooks";
 import Avatar from "@/src/components/ui/avatar/Avatar";
 import LogoutSvg from "@/src/components/ui/svgs/LogoutSvg";
 import Link from "next/link";
 import { IProfile } from "@/src/interfaces/user.interface";
+import ArrowSvg from "@/src/components/ui/svgs/ArrowSvg";
+import Settings from "@/src/components/ui/modal/settings/Settings";
+import { settingsZustand } from "@/src/store/settings.zustand";
 
 interface ISideBarFooter {
   profile: IProfile;
@@ -17,7 +21,10 @@ const SidebarFooter = ({ profile, isLoadingProfile }: ISideBarFooter) => {
     <div className={styles.aside__content__footer}>
       {user && (
         <div className={styles.aside__content__footer__user}>
-          <div className={styles.aside__content__footer__user__info}>
+          <Link
+            href={"/profile"}
+            className={styles.aside__content__footer__user__info}
+          >
             <Avatar
               border={50}
               fz={18}
@@ -29,7 +36,12 @@ const SidebarFooter = ({ profile, isLoadingProfile }: ISideBarFooter) => {
             <p className={styles.aside__content__footer__user__info__login}>
               {isLoadingProfile ? "" : profile.login}
             </p>
-          </div>
+            <button
+              className={styles.aside__content__footer__user__info__arrow}
+            >
+              <ArrowSvg />
+            </button>
+          </Link>
           <button className={styles.aside__content__footer__user__logout}>
             <LogoutSvg />
             <span className={styles.aside__content__footer__user__logout__span}>

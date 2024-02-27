@@ -1,7 +1,8 @@
+import Tasks from "@/src/components/screens/tasks/Tasks";
 import React from "react";
 
 const Home = () => {
-  return <div>sdds</div>;
+  return <Tasks />;
 };
 
 export default Home;

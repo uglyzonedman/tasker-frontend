@@ -1,0 +1,24 @@
+.menu {
+  height: auto;
+  width: 300px;
+  border-radius: 8px;
+  background: #2c2c2c;
+  border: 1px solid #3d3d3d;
+  &__content {
+    padding: 10px;
+    button {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      border: none;
+
+      span {
+        color: #fff;
+        font-size: 16px;
+        margin-left: 10px;
+      }
+    }
+  }
+}

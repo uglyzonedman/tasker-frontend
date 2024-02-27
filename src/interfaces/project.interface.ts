@@ -14,6 +14,7 @@ export interface IProject {
   ownerId: string;
   updatedAt: string;
   ProjectCollaboratorion?: any;
+  ProjectItem: any;
 }
 
 export interface IProjectItems {
@@ -25,7 +26,7 @@ export interface IProjectItems {
   Task: Array<ITaks>;
   refetch: (
     options?: RefetchOptions | undefined
-  ) => Promise<QueryObserverResult<IProjectResponse, Error>>;
+  ) => Promise<QueryObserverResult<IProjectByIdResponse, Error>>;
 }
 
 export interface IProjectByIdResponse {
@@ -43,4 +44,11 @@ export interface ITaks {
   name: string;
   priority: string;
   updatedAt: string;
+}
+
+export interface IUpdateProject {
+  id: string;
+  name: string;
+  description: string;
+  priority: string;
 }

@@ -37,8 +37,12 @@ export const authZustand = create<IAuthState>()(
               };
               window.location.href = "/";
               localStorage.setItem("user", JSON.stringify(user));
+              const expirationDate = new Date();
+              expirationDate.setDate(expirationDate.getDate() + 14);
+
               Cookies.set("accessToken", res.accessToken, {
                 path: "/",
+                expires: expirationDate,
               });
               set({ isLoading: false, user: user });
             })
