@@ -8,7 +8,6 @@ import ArrowSvg from "../../ui/svgs/ArrowSvg";
 import { useAuth } from "@/src/hooks/hooks";
 import Avatar from "../../ui/avatar/Avatar";
 import LogoutSvg from "../../ui/svgs/LogoutSvg";
-import SidebarFooter from "./sidebar-footer/SidebarFooter";
 import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { UserService } from "../../services/user.service";
@@ -22,7 +21,6 @@ const Sidebar = () => {
       ssr: false,
     }
   );
-
   const { data: profile, isLoading: isLoadingProfile } = useQuery({
     queryKey: ["get-profile"],
     queryFn: () => UserService.getProfile(),
@@ -48,7 +46,7 @@ const Sidebar = () => {
             <li className={styles.aside__content__nav__list__item}>
               <Link
                 className={styles.aside__content__nav__list__item__link}
-                href={"/tasks"}
+                href={"/"}
               >
                 <TasksSvg />
                 <span

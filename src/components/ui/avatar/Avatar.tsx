@@ -4,7 +4,7 @@ import ImageDefault from "./ImageDefault";
 
 export interface IAvatar {
   login?: string;
-  avatar?: string;
+  avatar?: any;
   border: number;
   width: number;
   height: number;

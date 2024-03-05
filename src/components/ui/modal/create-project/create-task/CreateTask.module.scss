@@ -126,11 +126,22 @@
 .react-datepicker__day-names {
 }
 
-.test {
-  background: #111111;
+.day {
+  background: #1a1a1a;
   color: #ffffff;
 }
 
-.test2 {
+.calendar {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.input {
+  color: #1a1a1a;
+  width: 125px;
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 12px;
+  padding: 2px;
   color: #ffffff;
 }

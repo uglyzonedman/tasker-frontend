@@ -9,7 +9,8 @@
     overflow: auto;
     scrollbar-width: auto;
     scrollbar-color: #8264fe rgb(255, 255, 255);
-
+    &__settings {
+    }
     &::-webkit-scrollbar {
       width: 16px; /* Adjust the width as needed */
     }

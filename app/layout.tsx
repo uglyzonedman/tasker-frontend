@@ -2,6 +2,8 @@
 import "./globals.css";
 import LayoutPage from "@/src/components/layout/Layout";
 import AuthProvider from "@/src/components/providers/AuthProvider";
+import Settings from "@/src/components/ui/modal/settings/Settings";
+import { settingsZustand } from "@/src/store/settings.zustand";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SWRConfig } from "swr";
 

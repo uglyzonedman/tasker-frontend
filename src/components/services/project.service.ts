@@ -27,7 +27,8 @@ export const ProjectService = {
     projectItemId: string,
     name: string,
     description: string,
-    priority: string
+    priority: string,
+    deadline: string
   ) {
     const res = await $apiWithToken.post(
       `project/create-task/${projectItemId}`,
@@ -35,6 +36,7 @@ export const ProjectService = {
         name,
         description,
         priority,
+        deadline,
       }
     );
     return res.data;
@@ -55,6 +57,60 @@ export const ProjectService = {
   },
   async changeTaskCompleted(taskId: string) {
     const res = await $apiWithToken.put(`project/change/${taskId}`);
+    return res.data;
+  },
+
+  async updateProjectName(
+    projectId: string | undefined,
+    name: string | undefined
+  ) {
+    const res = await $apiWithToken.put(
+      `project/update-project-name/${projectId}`,
+      { name }
+    );
+    return res.data;
+  },
+  async updateProjectItemName(
+    projectItemId: string | undefined,
+    name: string | undefined
+  ) {
+    const res = await $apiWithToken.put(
+      `project/update-project-item-name/${projectItemId}`,
+      { name }
+    );
+    return res.data;
+  },
+
+  async updateTaskById(
+    taskId: string | undefined,
+    name: string,
+    description: string,
+    priority: string
+  ) {
+    const res = await $apiWithToken.put(`project/update-task/${taskId}`, {
+      name,
+      description,
+      priority,
+    });
+    return res.data;
+  },
+
+  async deleteTaskById(taskId: string) {
+    const res = await $apiWithToken.delete(`project/delete-task/${taskId}`);
+    return res.data;
+  },
+
+  async deleteProjectItemById(projectItemId: string) {
+    const res = await $apiWithToken.delete(
+      `project/delete-project-item/${projectItemId}`
+    );
+    return res.data;
+  },
+
+  async deleteProjectById(projectId: string) {
+    const res = await $apiWithToken.delete(
+      `project/delete-project/${projectId}`
+    );
     return res.data;
   },
 };

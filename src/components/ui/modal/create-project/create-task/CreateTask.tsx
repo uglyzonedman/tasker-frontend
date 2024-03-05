@@ -6,20 +6,23 @@ import FlagSvg from "../../../svgs/FlagSvg";
 import ModalPriorite from "../../modal-priorite/ModalPriorite";
 import { priorities } from "@/src/components/consts/priorities";
 import DatePicker from "react-datepicker";
+import "./CreateTask.css";
 import {
   QueryObserverResult,
   RefetchOptions,
   useMutation,
 } from "@tanstack/react-query";
-import "react-datepicker/dist/react-datepicker.css";
-import { IProjectResponse } from "@/src/interfaces/project.interface";
+import {
+  IProjectByIdResponse,
+  IProjectResponse,
+} from "@/src/interfaces/project.interface";
 import "react-datepicker/dist/react-datepicker.css";
 interface ICreateTask {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   id: string;
   refetch: (
     options?: RefetchOptions | undefined
-  ) => Promise<QueryObserverResult<IProjectResponse, Error>>;
+  ) => Promise<QueryObserverResult<IProjectByIdResponse, Error>>;
 }
 const CreateTask = ({ setIsOpen, id, refetch }: ICreateTask) => {
   const pathname = usePathname();
@@ -28,16 +31,13 @@ const CreateTask = ({ setIsOpen, id, refetch }: ICreateTask) => {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [priority, setPriority] = useState("");
-  const [endDate, setEndDate] = useState();
-  const [value, onChange] = useState(new Date());
+  const [endDate, setEndDate] = useState<string>("");
+  const [date, setDate] = useState();
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
-  const handleCalendarChange = (date: Date) => {
-    onChange(date);
-    setIsOpenCalendar(false);
-  };
 
   const { mutate } = useMutation({
-    mutationFn: () => ProjectService.createTask(id, name, desc, priority),
+    mutationFn: () =>
+      ProjectService.createTask(id, name, desc, priority, endDate),
     mutationKey: ["create-task"],
     onSuccess: () => {
       refetch();
@@ -93,11 +93,13 @@ const CreateTask = ({ setIsOpen, id, refetch }: ICreateTask) => {
       </div>
       <div className={styles.modal__options}>
         {isOpenPriorite && (
-          <ModalPriorite
-            priority={priority}
-            setPriority={setPriority}
-            setIsOpenPriorite={setIsOpenPriorite}
-          />
+          <div style={{ position: "absolute", top: "10px" }}>
+            <ModalPriorite
+              priority={priority}
+              setPriority={setPriority}
+              setIsOpenPriorite={setIsOpenPriorite}
+            />
+          </div>
         )}
         <div className={styles.modal__options__priority}>
           <p className={styles.modal__options__priority__title}>
@@ -122,10 +124,17 @@ const CreateTask = ({ setIsOpen, id, refetch }: ICreateTask) => {
           </p>
           <div className={styles.modal__options__priority__body}>
             <DatePicker
-              dayClassName={() => styles.test2}
-              calendarClassName={styles.test}
-              selected={endDate}
-              onChange={(date: any) => setEndDate(date)}
+              calendarClassName={styles.calendar}
+              selected={date}
+              onChange={(date: any) => {
+                const day = date.getDate();
+                const month = date.getMonth() + 1;
+                const year = date.getFullYear();
+                const formattedDate = `${month}/${day}/${year}`;
+                setDate(date);
+                setEndDate(formattedDate);
+              }}
+              className={styles.input}
             />
           </div>
         </div>
