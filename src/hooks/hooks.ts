@@ -13,7 +13,7 @@ export const useGetStoreLocal = (name: string) => {
 
 export const useTypedDispatch = () => useDispatch<Dispatch>();
 
-export const useAuth = () => authZustand((state: IAuthState) => state);
+export const useAuth: any = () => authZustand((state: IAuthState) => state);
 
 export const useGetDaysUntilTask = (dateString: string): string => {
   const taskDate = new Date(dateString);

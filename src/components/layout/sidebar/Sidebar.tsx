@@ -46,7 +46,7 @@ const Sidebar = () => {
             <li className={styles.aside__content__nav__list__item}>
               <Link
                 className={styles.aside__content__nav__list__item__link}
-                href={"/tasks"}
+                href={"/"}
               >
                 <TasksSvg />
                 <span

@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Task.module.scss";
 import TaskItem from "./TaskItem/TaskItem";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import useSWR from "swr";
 import { ProjectService } from "@/src/components/services/project.service";
 import PlusSvg from "@/src/components/ui/svgs/PlusSvg";
@@ -11,6 +11,7 @@ import useSWRMutation from "swr/mutation";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import MoreSvg from "@/src/components/ui/svgs/MoreSvg";
 import MenuProject from "@/src/components/ui/modal/menus/menu-project/MenuProject";
+import { useAuth } from "@/src/hooks/hooks";
 
 const Task = () => {
   const pathname = usePathname();
@@ -41,7 +42,15 @@ const Task = () => {
       setIsOpenCreateProject(false);
     },
   });
+  console.log(projectItem?.project.ownerId);
 
+  const { user } = useAuth();
+  const router = useRouter();
+  useEffect(() => {
+    if (projectItem?.project.ownerId !== user.id) {
+      router.push("/");
+    }
+  }, [user, projectItem]);
   const { mutate: mutateUpdateProjectName } = useMutation({
     mutationKey: ["update-project-name"],
     mutationFn: () =>

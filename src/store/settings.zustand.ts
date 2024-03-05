@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
-export const settingsZustand = create()(
+export const settingsZustand = create<any>()(
   devtools(
     persist(
       (set, get) => ({

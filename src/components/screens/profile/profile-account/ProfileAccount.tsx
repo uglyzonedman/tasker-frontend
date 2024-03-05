@@ -33,6 +33,10 @@ const ProfileAccount = () => {
           </p>
         </div>
       </div>
+      <div className={styles.profile__content__name}>
+        <label>Имя</label>
+        <input type="text" />
+      </div>
     </div>
   );
 };
