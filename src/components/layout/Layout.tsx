@@ -13,7 +13,6 @@ interface ILayout {
 
 const LayoutPage = ({ children }: ILayout) => {
   const pathname = usePathname();
-  console.log("Auth", pathname);
   return (
     <div className={styles.layout}>
       {pathname.includes("/sign_in") || pathname.includes("/sign_up") ? (
